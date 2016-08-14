@@ -1,0 +1,33 @@
+extends ./page.jade
+
+block title
+    title= title
+
+block body
+    include ./parts/header.jade
+
+    main.row
+        .col.s12.m4.l3
+            // Note that "m4 l3" was added
+            //
+              Grey navigation panel
+              This content will be:
+              3-columns-wide on large screens,
+              4-columns-wide on medium screens,
+              12-columns-wide on small screens
+
+            //include ./parts/categories.jade
+
+            // =include /src/templates/categories.tpl.html
+        .col.s12.m8.l9
+            div
+                h1= title
+                span= date
+                != contents
+    //include ./parts/comment.jade
+    include ./parts/footer.jade
+    script(type='text/javascript', src='/vendors/js/vendors.min.js')
+    // inject:vendor:js
+    // endinject
+    // inject:js
+    // endinject

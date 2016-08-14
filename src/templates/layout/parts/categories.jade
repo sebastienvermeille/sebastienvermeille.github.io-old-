@@ -1,0 +1,7 @@
+div.collection.with-header
+    div.collection-header
+        h8 Thèmes
+    a.collection-item(href='/') Tous les thèmes
+    each category in categories.length ? categories : ['There are no categories']
+        a.collection-item(href='/content/#{category.label}/' class=categoryLabel === category.label ? 'active' : '') #{category.label}
+            span.badge #{category.count}
