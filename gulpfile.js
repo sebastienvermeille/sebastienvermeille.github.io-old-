@@ -366,11 +366,11 @@ gulp.task('clean', function () {
 });
 
 // Build for dev
-gulp.task('build', ['css', 'vendors', 'copy-fonts']);
+gulp.task('resources', ['css', 'vendors', 'copy-fonts']);
 
 // Build for prod = Build + minify-css
-gulp.task('prod', plugins.sequence('clean', 'build',  'media', 'minify-css', 'minify-vendors', 'copy-assets', 'build-content', 'build-summary', 'build-categories-summary', 'build-pages'));
+gulp.task('build', plugins.sequence('clean', 'resources',  'media', 'minify-css', 'minify-vendors', 'copy-assets', 'build-content', 'build-summary', 'build-categories-summary', 'build-pages'));
 
 // Tâche par défaut
-gulp.task('default', plugins.sequence('clean', 'build',  'media', 'minify-css', 'minify-vendors', 'copy-assets', 'build-content', 'build-summary', 'build-categories-summary', 'build-pages', 'watch', 'webserver'));
+gulp.task('default', plugins.sequence('clean', 'resources',  'media', 'minify-css', 'minify-vendors', 'copy-assets', 'build-content', 'build-summary', 'build-categories-summary', 'build-pages', 'watch', 'webserver'));
 
