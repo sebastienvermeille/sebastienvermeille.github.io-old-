@@ -1,0 +1,58 @@
+@charset "UTF-8";
+@import 'materialize';
+@import 'highlightjs';
+/*
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+*/
+
+$article-card-height: 240px;
+
+div.card-article {
+  div.card-image {
+
+    height:$article-card-height;
+    max-height:$article-card-height;
+    min-height:$article-card-height;
+
+    overflow:hidden;
+
+  }
+
+}
+
+div.collection-header {
+
+}
+
+.justify {
+  text-align: justify;
+}
+
+pre {
+  @extend .z-depth-2;
+  padding: 1px 1px 1px 1px;
+  border: solid 1px rgba(51,51,51,0.12);
+  background-color: #f5f2f0;
+}
+
+pre::before {
+  content: "code";
+  display:block;
+  height: 21px;
+  font-size: 16px;
+  font-family: "Myriad Pro", sans-serif;
+  text-shadow:0px 1px 0px rgba(255,255,255,0.25);
+  padding: 0px 0px 0px 2px;
+
+  background: #cfcfcf; /* Old browsers */
+  background: linear-gradient(to bottom,  #cfcfcf 0%,#a8a8a8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cfcfcf', endColorstr='#a8a8a8',GradientType=0 ); /* IE6-9 */
+}

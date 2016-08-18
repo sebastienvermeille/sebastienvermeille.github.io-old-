@@ -1,0 +1,25 @@
+extends ./layout/page
+
+block title
+    title Home - SVERMEILLE.COM
+
+block description
+    meta(name='description', content='Welcome to code.svermeille.com homepage')
+
+block body
+    include layout/parts/header.jade
+
+    // Page Layout here
+    main.row
+        .col.s12.m4.l3
+            include layout/parts/categories.jade
+
+        .col.s12.m8.l9
+            include layout/parts/cover.mixin.jade
+            h1 Articles sur le thème #{categoryLabel}
+            div.content
+                div.row
+                    each article in articles.length ? articles : ['There are no articles']
+                        mixin cover(article.cover, article.title, article.description, article.link, article.categoryLabel)
+
+    include layout/parts/footer.jade
