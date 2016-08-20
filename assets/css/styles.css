@@ -10067,3 +10067,10 @@ pre::before
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cfcfcf', endColorstr='#a8a8a8',GradientType=0 );
     /* IE6-9 */
 }
+
+#disqus_thread
+{
+    margin-top: 60px;
+    margin-right: 10px; 
+    margin-left: 10px;
+}
