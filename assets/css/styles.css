@@ -10029,11 +10029,7 @@ main
 
 div.card-article div.card-image
 {
-    overflow: hidden; 
-
-    height: 240px;
-    min-height: 240px;
-    max-height: 240px;
+    padding: 10px;
 }
 
 .justify
