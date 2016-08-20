@@ -1225,4 +1225,6 @@ $(function() {
     });
 });
 
+hljs.initHighlightingOnLoad();
+
 //# sourceMappingURL=vendors.js.map

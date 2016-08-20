@@ -1,0 +1,156 @@
+<!DOCTYPE html><html><head><!-- Import Google Icon Font--><link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"><link href="/assets/css/styles.min.css" rel="stylesheet"><!-- inject:vendor:css--><!-- endinject--><!-- inject:css--><!-- endinject--><!-- Let browser know website is optimized for mobile--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta charset="UTF-8"><title>Créer un fichier .gitignore complet et facilement pour son repository Git avec gitignore.io - SVERMEILLE.COM</title><meta name="description" content="Découvrez comment créer en quelques clics un super fichier .gitignore pour votre repo Git."><script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>(adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-4328681465012055",
+    enable_page_level_ads: true
+});</script></head><body><!-- Navbar goes here--><header class="navbar-fixed"><nav><div class="nav-wrapper"><div class="container"><a href="/" class="brand-logo"><i class="material-icons">code</i>code.svermeille.com</a><ul class="right hide-on-med-and-down"><li><a href="/pages/about.html">About</a></li></ul></div></div></nav></header><main class="row"><div class="col s12 m4 l3"><!-- Note that "m4 l3" was added--><!--Grey navigation panel
+This content will be:
+3-columns-wide on large screens,
+4-columns-wide on medium screens,
+12-columns-wide on small screens
+--><div class="collection with-header"><div class="collection-header"><h8>Thèmes</h8></div><a href="/" class="collection-item">Tous les thèmes</a><a href="/content/Databases/" class="collection-item">Databases<span class="badge">1</span></a><a href="/content/Games/" class="collection-item">Games<span class="badge">1</span></a><a href="/content/Git/" class="collection-item active">Git<span class="badge">1</span></a><a href="/content/Linux/" class="collection-item">Linux<span class="badge">1</span></a><a href="/content/PHP/" class="collection-item">PHP<span class="badge">2</span></a></div><!-- =include /src/templates/categories.tpl.html--></div><div class="col s12 m8 l9"><div><h1>Créer un fichier .gitignore complet et facilement pour son repository Git avec gitignore.io</h1><span>Publié le 2016-07-31 00:00</span><p>Aujourd’hui je partage ici une petite trouvaille qui me simplifie grandement la vie et qui devrait vous intéresser aussi si vous êtes ici.</p>
+<p>Quand on stock un projet sur Git il arrive fréquemment qu&#39;on se retrouve avec des fichiers propres à l’IDE utilisé ou encore de bons vieux fichiers .thumbs de windows ou autre selon l’OS. La cause ? Un .gitignore incomplet.</p>
+<h2 id="gitignore-io-une-solution-communautaire">Gitignore.io - Une solution communautaire</h2>
+<p>Ce superbe outil baptisé <a href="https://www.gitignore.io/">gitignore.io</a> crée par Joe Blau est hébergé sur Github. Les pull requests sont possibles et donc les développeurs peuvent l&#39;améliorer en continue.
+Mis à jour par des développeurs pour les développeurs :</p>
+<p><img src="/media/git/gitignore.io.png" alt="printscreen-gitignore-io" title="Capture d&#39;écran de Gitignore.io"></p>
+<h2 id="comment-l-utiliser">Comment l&#39;utiliser</h2>
+<p>Ce site vous permet tout simplement de saisir via des mots-clés les différentes choses que vous souhaitez exclure.</p>
+<p>Prenons l&#39;exemple d&#39;un projet Java: Il existe plusieurs IDE qui vont créer leurs petits fichiers comme Eclipse, NetBeans, IntelliJ de JetBrains, etc.</p>
+<p>Voici a quoi pourrait ressembler notre liste d&#39;exclusion :</p>
+<p><img src="/media/git/gitignore.io.samplejava.png" alt="gitignore-io-java-example" title="Gitignore.io avec les mots clés : Eclipse, Java, JetBrains et NetBeans"></p>
+<p>Avec ces 4 mots-clés nous avons rejeté tous les fichiers spécifiques aux IDE eclipse, intelliJ, et NetBeans + les fichiers java inutiles (.class par exemple). </p>
+<p>Il suffit ensuite de cliquer sur le bouton <strong>Generate</strong> et voici ce qu’on obtient :</p>
+<pre><code><span class="hljs-comment"># Created by https://www.gitignore.io/api/eclipse,java,jetbrains,netbeans</span>
+
+<span class="hljs-comment">### Eclipse ###</span>
+
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+
+<span class="hljs-comment"># Eclipse Core</span>
+.project
+
+<span class="hljs-comment"># External tool builders</span>
+.externalToolBuilders/
+
+<span class="hljs-comment"># Locally stored "Eclipse launch configurations"</span>
+*.launch
+
+<span class="hljs-comment"># PyDev specific (Python IDE for Eclipse)</span>
+*.pydevproject
+
+<span class="hljs-comment"># CDT-specific (C/C++ Development Tooling)</span>
+.cproject
+
+<span class="hljs-comment"># JDT-specific (Eclipse Java Development Tools)</span>
+.classpath
+
+<span class="hljs-comment"># Java annotation processor (APT)</span>
+.factorypath
+
+<span class="hljs-comment"># PDT-specific (PHP Development Tools)</span>
+.buildpath
+
+<span class="hljs-comment"># sbteclipse plugin</span>
+.target
+
+<span class="hljs-comment"># Tern plugin</span>
+.tern-project
+
+<span class="hljs-comment"># TeXlipse plugin</span>
+.texlipse
+
+<span class="hljs-comment"># STS (Spring Tool Suite)</span>
+.springBeans
+
+<span class="hljs-comment"># Code Recommenders</span>
+.recommenders/
+
+
+<span class="hljs-comment">### JetBrains ###</span>
+<span class="hljs-comment"># Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and Webstorm</span>
+<span class="hljs-comment"># Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839</span>
+
+<span class="hljs-comment"># User-specific stuff:</span>
+.idea/workspace.<span class="hljs-keyword">xml</span>
+<span class="hljs-title">.idea</span>/tasks.<span class="hljs-keyword">xml</span>
+<span class="hljs-title">.idea</span>/dictionaries
+.idea/vcs.<span class="hljs-keyword">xml</span>
+<span class="hljs-title">.idea</span>/jsLibraryMappings.<span class="hljs-keyword">xml</span>
+
+<span class="hljs-title"># Sensitive</span> <span class="hljs-keyword">or</span> high-churn files:
+.idea/dataSources.ids
+.idea/dataSources.<span class="hljs-keyword">xml</span>
+<span class="hljs-title">.idea</span>/dataSources.local.<span class="hljs-keyword">xml</span>
+<span class="hljs-title">.idea</span>/sqlDataSources.<span class="hljs-keyword">xml</span>
+<span class="hljs-title">.idea</span>/dynamic.<span class="hljs-keyword">xml</span>
+<span class="hljs-title">.idea</span>/uiDesigner.<span class="hljs-keyword">xml</span>
+
+<span class="hljs-title"># Gradle</span>:
+.idea/gradle.<span class="hljs-keyword">xml</span>
+<span class="hljs-title">.idea</span>/libraries
+
+<span class="hljs-comment"># Mongo Explorer plugin:</span>
+.idea/mongoSettings.<span class="hljs-keyword">xml</span>
+
+<span class="hljs-title">## File-based</span> project format:
+*.iws
+
+<span class="hljs-comment">## Plugin-specific files:</span>
+
+<span class="hljs-comment"># IntelliJ</span>
+/out/
+
+<span class="hljs-comment"># mpeltonen/sbt-idea plugin</span>
+.idea_modules/
+
+<span class="hljs-comment"># JIRA plugin</span>
+atlassian-ide-plugin.<span class="hljs-keyword">xml</span>
+
+<span class="hljs-title"># Crashlytics</span> plugin (for Android Studio <span class="hljs-keyword">and</span> IntelliJ)
+com_crashlytics_export_strings.<span class="hljs-keyword">xml</span>
+<span class="hljs-title">crashlytics</span>.properties
+crashlytics-build.properties
+fabric.properties
+
+<span class="hljs-comment">### JetBrains Patch ###</span>
+<span class="hljs-comment"># Comment Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-215987721</span>
+
+<span class="hljs-comment"># *.iml</span>
+<span class="hljs-comment"># modules.xml</span>
+<span class="hljs-comment"># .idea/misc.xml </span>
+<span class="hljs-comment"># *.ipr</span>
+
+
+<span class="hljs-comment">### NetBeans ###</span>
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.<span class="hljs-keyword">xml</span>
+<span class="hljs-title">.nb-gradle</span>/
+
+
+<span class="hljs-comment">### Java ###</span>
+*.class
+
+<span class="hljs-comment"># Mobile Tools for Java (J2ME)</span>
+.mtj.tmp/
+
+<span class="hljs-comment"># Package Files #</span>
+*.jar
+*.war
+*.ear
+
+<span class="hljs-comment"># virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml</span>
+hs_err_pid*
+</code></pre></div></div></main><!--include ./parts/comment.jade--><footer class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">Quote</h5><p class="grey-text text-lighten-4">La connaissance est la seule chose qui s'accroit lorsqu'on la partage.</p><p class="white-text right">Sacha Boudjema</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">Follow me</h5><ul><li><a href="https://twitter.com/svermeille_com" class="grey-text text-lighten-3">Twitter</a></li><li><a href="https://plus.google.com/+S%C3%A9bastienVermeille" class="grey-text text-lighten-3">Google+</a></li><!--li--><!--    a.grey-text.text-lighten-3(href='#!') RSS Feed--></ul></div></div></div><div class="footer-copyright"><div class="container">Created by Sébastien Vermeille<a href="https://creativecommons.org/licenses/by/4.0/" class="grey-text text-lighten-4 right">Licensed under Creative Commons Attribution 4.0</a></div></div></footer><script type="text/javascript" src="/vendors/js/vendors.min.js"></script><!-- inject:vendor:js--><!-- endinject--><!-- inject:js--><!-- endinject--></body></html>
