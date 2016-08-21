@@ -1,0 +1,83 @@
+<!DOCTYPE html><html><head><!-- Import Google Icon Font--><link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"><link href="/assets/css/styles.min.css" rel="stylesheet"><!-- inject:vendor:css--><!-- endinject--><!-- inject:css--><!-- endinject--><!-- Let browser know website is optimized for mobile--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta charset="UTF-8"><title>[Docker] Gérer efficacement ses containers Docker avec Rancher sous Debian - SVERMEILLE.COM</title><meta name="description" content="Découvrez comment installer et configurer Rancher. Un outil graphique qui vous permettra de déployer et superviser facilement vos containers Docker."><script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>(adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-4328681465012055",
+    enable_page_level_ads: true
+});</script></head><body><!-- Navbar goes here--><header class="navbar-fixed"><nav><div class="nav-wrapper"><div class="container"><a href="/" class="brand-logo"><i class="material-icons">code</i>code.svermeille.com</a><ul class="right hide-on-med-and-down"><li><a href="/pages/about.html">About</a></li></ul></div></div></nav></header><main class="row"><div class="col s12 m4 l3 xl2"><!-- Note that "m4 l3" was added--><!--Grey navigation panel
+This content will be:
+3-columns-wide on large screens,
+4-columns-wide on medium screens,
+12-columns-wide on small screens
+--><div class="collection with-header"><div class="collection-header"><h8>Thèmes</h8></div><a href="/" class="collection-item">Tous les thèmes</a><a href="/content/Databases/" class="collection-item">Databases<span class="badge">1</span></a><a href="/content/Docker/" class="collection-item active">Docker<span class="badge">1</span></a><a href="/content/Games/" class="collection-item">Games<span class="badge">1</span></a><a href="/content/Git/" class="collection-item">Git<span class="badge">1</span></a><a href="/content/Linux/" class="collection-item">Linux<span class="badge">1</span></a><a href="/content/PHP/" class="collection-item">PHP<span class="badge">2</span></a></div><!-- =include /src/templates/categories.tpl.html--></div><div class="col s12 m8 l9 xl10"><div><h1>[Docker] Gérer efficacement ses containers Docker avec Rancher sous Debian</h1><span class="italic">Publié le 21 août 2016 00:00</span><p>Docker avec la console c&#39;est déjà super mais lorsqu&#39;on a beaucoup de containers on peut parfois avoir tendance à s&#39;y perdre. Je vous propose de compléter votre installation Docker existante avec un outil graphique et gratuit : Rancher.</p>
+<p>Rancher c&#39;est un container docker qui va tenter démystifier docker au travers d&#39;une jolie interface graphique.</p>
+<h2 id="pr-requis">Pré-requis</h2>
+<p>Alors pour commencer il est obligatoire d&#39;avoir installé docker sur son serveur. Dans le cas de ce tutoriel j&#39;utilise une Debian Jessie mais d&#39;autres OS sont  évidemment possible.</p>
+<blockquote>
+<p>Il existe également Rancher OS (si vous le testez n&#39;hésitez pas à me laisser un commentaire je suis curieux de voir ce qu&#39;il apporte)</p>
+</blockquote>
+<p>Nous ne parlerons donc pas ici des détails pour l&#39;installation de docker qui est très bien détaillées sur la <a href="https://docs.docker.com/engine/installation/">documentation officielle</a></p>
+<h2 id="installation-de-rancher">Installation de Rancher</h2>
+<p>Comme dit précédemment Rancher n&#39;est autre qu&#39;une image Docker. Il nous suffit donc de créer un container sur notre serveur Docker avec la commande :</p>
+<pre><code>docker run --name RANCHER -d --restart=always -p 8888:8080 rancher/server
+</code></pre><blockquote>
+<p>Comme d&#39;habitude dans Docker vous pouvez modifier le port de sortie par le port de votre choix. Ici : <strong>8888</strong></p>
+</blockquote>
+<p>Ensuite rendez-vous sur l&#39;adresse ip de votre serveur port <strong>8888</strong>. Par exemple: <a href="http://192.168.1.15:8888">http://192.168.1.15:8888</a></p>
+<p>Ne soyez pas trop impatient cela peut prendre un petit moment avant que le container soit lancé. Sur mon serveur entre 40 et 60 secondes.</p>
+<p>Si tout a fonctionné vous devriez voir une jolie interface web et vous retrouver directement connecté en tant qu&#39;administrateur.</p>
+<h2 id="configurer-l-authentification">Configurer l&#39;authentification</h2>
+<p>Il est possible de s&#39;authentifier via moultes solutions : Active Directory, LDAP, Données locales, Github.</p>
+<p>Dans ce tutoriel j&#39;expliquerai comment s&#39;authentifier via <strong>Github</strong>. Je trouve cette solution élégante et surtout elle a l&#39;avantage de déplacer le point d&#39;ancrage vers Github. Ainsi en cas d&#39;attaque c&#39;est un serveur Github qui gérera le traffic (et Github c&#39;est... balèze !).</p>
+<p>Pour commencez rendez-vous dans le menu <strong>ADMIN</strong> &gt; <strong> Access Control </strong> :</p>
+<p><img src="/media/rancher/access-control.png" alt="printscreen-access-control" title="Capture d&#39;écran du menu contrôle d&#39;accès."></p>
+<p>Sélectionnez ensuite <strong>Github</strong> dans la liste :</p>
+<p><img src="/media/rancher/access-control-list.png" alt="printscreen-access-control-list" title="Choix du mode d&#39;authentification."></p>
+<p>Rendez-vous sur Github et <a href="https://github.com/settings/developers">créez une application Github</a> :</p>
+<p><img src="/media/rancher/github-register-application.png" alt="printscreen-github-register-application" title="Bouton créer une application sur Github."></p>
+<p>Remplissez le formulaire :</p>
+<p><img src="/media/rancher/github-application-form.png" alt="printscreen-github-application-form" title="Exemple de formulaire"></p>
+<p>Cliquez sur <strong>Register application</strong> et voila le plus dur est fait.</p>
+<p>Maintenant vous allez être rediriger sur une page vous indiquant plusieurs éléments essentiels :</p>
+<ul>
+<li>Client ID</li>
+<li>Client Secret</li>
+</ul>
+<p>Ces informations vous sont demandées dans Rancher. Il vous suffit de les saisir dans les champs adéquats :</p>
+<p><img src="/media/rancher/rancher-github-auth-form.png" alt="printscreen-rancher-github-auth-form" title="Formulaire rancher"></p>
+<blockquote>
+<p><strong>Ne cocher pas</strong> la case &#39;Use a private Github enterprise installation&#39; (sauf si c&#39;est votre cas)</p>
+</blockquote>
+<p>Cliquez ensuite sur le bouton <strong>Authenticate with Github</strong></p>
+<p>Une popup apparaît et vous demande alors d&#39;autoriser Rancher à accéder à votre application Github:</p>
+<p><img src="/media/rancher/allow-github.png" alt="printscreen-allow-github" title="Popup"></p>
+<p>Cliquez sur <strong>Authorize application</strong> et voilà !</p>
+<h2 id="cr-er-un-host">Créer un Host</h2>
+<p>Pour l&#39;instant nous n&#39;avons encore pas créé de Host. Rancher vous permet de déployer des containers sur d&#39;autres serveurs Docker d&#39;où cette possibilité. 
+Mais sachez qu&#39;on peut également créer un host sur le meme serveur que celui qui héberge Rancher.</p>
+<p>Cliquez sur le menu <strong> INFRASTRUCTURES </strong> &gt; <strong>Hosts</strong> :</p>
+<p><img src="/media/rancher/hosts.png" alt="printscreen-hosts" title="Hosts"></p>
+<p>La liste devrait être vide par défaut et nous allons donc spécifier notre premier Host. Dans le cas de ce tutoriel nous utiliserons le même host que celui qui héberge Rancher.</p>
+<p>Cliquez sur le bouton <strong>Add Host</strong> et sélectionnez <strong>Custom</strong> :</p>
+<p><img src="/media/rancher/hosts-choices.png" alt="printscreen-hosts-choices" title="Choix des hôtes Docker"></p>
+<p>Ensuite il faut remplir le formulaire suivant :</p>
+<p><img src="/media/rancher/host-form.png" alt="printscreen-host-form" title="Formulaire de création d&#39;un hôte Docker"></p>
+<p>4) Saisissez l&#39;adresse ip de votre serveur Docker sur lequel est installé Rancher.</p>
+<p>5) Copiez le contenu généré dans ce champ texte et exécutez le sur votre serveur.</p>
+<p>Patientez et voila votre serveur devrait alors apparaître dans la liste :</p>
+<p><img src="/media/rancher/hosts-list.png" alt="printscreen-hosts-list" title="L&#39;hôte est maintenant listé"></p>
+<h2 id="suite">Suite</h2>
+<p>Il est bientôt minuit je m&#39;arrête pour aujourd&#39;hui mais je pense diriger la suite de cet article vers un exemple de déploiement de container avec Rancher.</p>
+<p>Bonne lecture et n&#39;hésitez pas à me faire parvenir vos feedback et questions ;)</p>
+</div><div><div id="disqus_thread"></div><script>/**
+ *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+ *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables */
+
+ var disqus_config = function () {
+     //    this.page.url = 'PAGE_URL';  // Replace PAGE_URL with your page's canonical URL variable
+     //    this.page.identifier = 'PAGE_IDENTIFIER'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+ };
+
+(function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = '//svermeille.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+})();</script><noscript>Please enable JavaScript to view the<a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></div></main><footer class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">Quote</h5><p class="grey-text text-lighten-4">La connaissance est la seule chose qui s'accroit lorsqu'on la partage.</p><p class="white-text right">Sacha Boudjema</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">Follow me</h5><ul><li><a href="https://twitter.com/svermeille_com" class="grey-text text-lighten-3">Twitter</a></li><li><a href="https://plus.google.com/+S%C3%A9bastienVermeille" class="grey-text text-lighten-3">Google+</a></li><!--li--><!--    a.grey-text.text-lighten-3(href='#!') RSS Feed--></ul></div></div></div><div class="footer-copyright"><div class="container">Created by Sébastien Vermeille<a href="https://creativecommons.org/licenses/by/4.0/" class="grey-text text-lighten-4 right">Licensed under Creative Commons Attribution 4.0</a></div></div></footer><script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script><script type="text/javascript" src="/vendors/js/vendors.min.js"></script><!-- inject:vendor:js--><!-- endinject--><!-- inject:js--><!-- endinject--></body></html>
