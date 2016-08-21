@@ -10187,3 +10187,8 @@ pre::before
     margin-right: 10px; 
     margin-left: 10px;
 }
+
+.italic
+{
+    font-style: italic;
+}
